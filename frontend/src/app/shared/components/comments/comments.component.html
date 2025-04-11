@@ -1,0 +1,23 @@
+  <div class="modal" >
+    <div class="modal-content">
+
+      <div class="comment-section">
+        <textarea *ngIf="postComment" class="comment-input" placeholder="Write a comment..." [(ngModel)]="comment"></textarea>
+        <button *ngIf="postComment" class="comment-btn" (click)="addComment()" >Post Comment</button>
+        
+        <div class="comment-list">
+
+          <!-- <div class="comment"> -->
+            <!-- <p><strong>{{comment.username }} : </strong>{{comment.comment}}</p>
+            <button pButton type="button" icon="pi pi-trash" label="Delete" (click)="deleteComment(comment.commentId)"></button> -->
+            <app-comment *ngFor="let comment of comments"  [comment]="comment" (delete)="deleteComment(comment.commentId)"></app-comment>
+          <!-- </div> -->
+          
+        </div>
+        
+      </div>
+      <button class="comment-btn" (click)="closeComment()">close</button>
+    </div>
+  </div>
+  
+  

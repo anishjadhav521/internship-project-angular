@@ -1,0 +1,84 @@
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <app-menu></app-menu>
+    </aside>
+  
+    <!-- Profile Content -->
+    <main class="content">
+      <section class="profile-card">
+        <h2>Profile Information</h2>
+  
+        <!-- 👤 Profile Picture Section -->
+        <div class="profile-pic-section">
+          <img [src]="profilePic"alt="Profile Picture" class="profile-pic">
+          <input type="file" (change)="onProfilePicSelected($event)" hidden #fileInput>
+          <button class="edit-btn" (click)="fileInput.click()">Update Picture</button>
+        </div>
+  
+        <!-- Username -->
+        <div class="profile-item">
+          <div class="profile-editable">
+            <label>Username : {{userProfile.userName}}</label>
+            <ng-container *ngIf="changeUsername; then userName"></ng-container>
+            <button class="edit-btn" (click)="editUsername()">Edit</button>
+            <ng-template #userName>
+              <input type="text" [(ngModel)]="newUsername">
+              <button class="edit-btn" (click)="updateUsername()">Update</button>
+            </ng-template>
+          </div>
+        </div>
+  
+        <!-- Email -->
+        <div class="profile-item">
+          <label>Email : {{userProfile.email}}</label>
+          <ng-container *ngIf="changeEmail; then email"></ng-container>
+          <div class="profile-editable">
+            <button class="edit-btn" (click)="editEmail()">Edit</button>
+            <ng-template #email>
+              <input type="text" [(ngModel)]="newEmail">
+              <button class="edit-btn" (click)="updateEmail()">Update</button>
+            </ng-template>
+          </div>
+        </div>
+  
+        <!-- Phone Number -->
+        <div class="profile-item">
+          <label>Phone Number : {{userProfile.phoneNumber}}</label>
+          <ng-container *ngIf="changePhoneNumber; then phoneNumber"></ng-container>
+          <div class="profile-editable">
+            <button class="edit-btn" (click)="editPhoneNumber()">Edit</button>
+            <ng-template #phoneNumber>
+              <input type="text" [(ngModel)]="newPhoneNumber">
+              <button class="edit-btn" (click)="updatePhoneNumber()">Update</button>
+            </ng-template>
+          </div>
+        </div>
+  
+        <!-- Bio -->
+        <div class="profile-item">
+          <label>Bio : {{userProfile.bio}}</label>
+          <ng-container *ngIf="changeBio; then bio"></ng-container>
+          <div class="profile-editable">
+            <button class="edit-btn" (click)="editBio()">Edit</button>
+            <ng-template #bio>
+              <input type="text" [(ngModel)]="newBio">
+              <button class="edit-btn" (click)="updateBio()">Update</button>
+            </ng-template>
+          </div>
+        </div>
+  
+        <!-- Change Password -->
+        <div class="profile-item center">
+          <button class="change-password-btn" (click)="editPassword()">Change Password</button>
+        </div>
+        <app-change-password *ngIf="changePassword" (visibility)="editPassword()"></app-change-password>
+  
+        <!-- ❌ Deactivate Account -->
+        <div class="profile-item center">
+          <button class="deactivate-btn" (click)="deactivateAccount(userProfile.id)">Deactivate Account</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  

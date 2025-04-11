@@ -1,0 +1,19 @@
+<div class="container">
+    <!-- Sidebar Menu -->
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <app-menu></app-menu>
+    </div>
+    
+    <!-- Messages Section -->
+    <div class="messages">
+        <h2>Users</h2>
+        <ul class="user-list">
+            <li *ngFor="let user of users" class="user-item">
+                <img [src]="user.avatar" [alt]="user.followers.userName" class="avatar">
+                <span>{{ user.followers.userName }}</span>
+                <button class="message-button" (click)="sendMessage(user.followers.id)">Message</button>
+            </li>
+        </ul>
+    </div>
+</div>

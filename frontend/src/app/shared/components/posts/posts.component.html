@@ -1,0 +1,30 @@
+
+<!-- <button (click)="togglePostForm()">add</button> -->
+<div class="post">
+   
+    <div class="post-header">
+      <img [src]= "profilePicUrl" alt="User Avatar" class="avatar">
+      <h3>{{ post.userName }}</h3>
+    </div>
+    <img [src]="postUrl" alt="Post Image" class="post-image" >
+    <div class="post-footer">`
+      <p>{{ post.caption }}</p>
+      <!-- <button (click)="toggleLike(post)" [ngClass]="{'liked': post.like.isLiked}" class="like-button">
+        <span *ngIf="post.like.isLiked">👍 Liked</span>
+        <span *ngIf="!post.like.isLiked">👍 Like</span>
+      </button> -->
+      <ng-container *ngIf="likvis">
+        <button (click)="like(post)" *ngIf="!liked"  class="like-button">like 👍</button>
+        <button  (click)="disLike(post)" *ngIf="liked" class="like-button">dislike</button>
+      </ng-container>
+      
+
+      <span (click)="invokeLikes()">{{ likeCount }} Like</span>
+      <button class="comment-button" (click)="openComments(post.PostId)">💬 {{commentLength }}</button>
+      <button *ngIf="deleteVisible"   class="delete-btn" title="Delete User" (click)="deletePost(post.PostId)">🗑️</button> 
+    </div>
+  </div>
+
+  <app-comments *ngIf="isVisible" (emmitter)="closeComments($event)" [PostId]="PId"  [profileId]="profileId"  [postComment]="likvis"></app-comments>
+  <app-show-likes *ngIf="showLikes" [likes]="post.like"  (close)="invokeLikes()"></app-show-likes>
+

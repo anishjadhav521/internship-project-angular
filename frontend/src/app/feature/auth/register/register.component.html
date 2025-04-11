@@ -1,0 +1,65 @@
+<div class="signup-container">
+    <div class="signup-box">
+      <h2 class="signup-title">Sign Up</h2>
+      
+      <form [formGroup]="RegistrationForm">
+
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input type="text" formControlName="phoneNumber" placeholder="Enter your phone number">
+          <div class="error" *ngIf="RegistrationForm.get('phoneNumber')?.touched && RegistrationForm.get('phoneNumber')?.invalid">
+            <span *ngIf="RegistrationForm.get('phoneNumber')?.errors?.['required']">contact number is required</span>
+            <span *ngIf="RegistrationForm.get('phoneNumber')?.errors?.['pattern']">Enter a valid Number</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" formControlName="fullName" placeholder="Enter your full name">
+          <div class="error" *ngIf="RegistrationForm.get('fullName')?.touched && RegistrationForm.get('fullName')?.invalid">
+            <span *ngIf="RegistrationForm.get('fullName')?.errors?.['required']">name is required</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" formControlName="email" placeholder="Enter your email">
+          <div class="error" *ngIf="RegistrationForm.get('email')?.touched && RegistrationForm.get('email')?.invalid">
+            <span *ngIf="RegistrationForm.get('email')?.errors?.['required']">Email is required</span>
+            <span *ngIf="RegistrationForm.get('email')?.errors?.['pattern']">Enter a valid email</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" formControlName="userName" placeholder="Enter your userName">
+          <div class="error" *ngIf="RegistrationForm.get('userName')?.touched && RegistrationForm.get('userName')?.invalid">
+            <span *ngIf="RegistrationForm.get('userName')?.errors?.['required']">Username is required</span>
+          </div>
+        </div>
+           
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" formControlName="password" placeholder="Enter your password">
+          <div class="error" *ngIf="RegistrationForm.get('password')?.touched && RegistrationForm.get('password')?.invalid">
+            <span *ngIf="RegistrationForm.get('password')?.errors?.['required']">Password is required</span>
+            <span *ngIf="RegistrationForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters</span>
+            <span *ngIf="RegistrationForm.get('password')?.errors?.['pattern']">Password must contain uppercase, lowercase, number, and special character</span>
+          </div>
+        </div>
+        
+        <div class="input-group">
+          <label>Confirm Password</label>
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm your password">
+          <div class="error" *ngIf="RegistrationForm.get('confirmPassword')?.touched && RegistrationForm.get('confirmPassword')?.invalid">
+            <span *ngIf="RegistrationForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required</span>
+            <span *ngIf="RegistrationForm.errors?.['passwordMismatch']">Passwords do not match</span>
+          </div>
+        </div>
+        
+        <button (click)="signUp()" [disabled]="RegistrationForm.invalid" class="signup-button"  >Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  

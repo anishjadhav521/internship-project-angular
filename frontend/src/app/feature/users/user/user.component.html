@@ -1,0 +1,68 @@
+<div class="page-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <app-menu > </app-menu>
+    </div>
+  
+    <!-- Main Profile Section -->
+    <div class="main-content">
+
+     
+      <!-- Profile Header -->
+      <div class="profile-container">
+        <div class="profile-header">
+          <button (click)="report()">report</button>
+          <img [src]="profilePic" alt="Profile Picture" class="avatar large-avatar" />
+          <div class="profile-info">
+            <h2>{{ user.userName }}</h2>
+            <p class="bio">{{ user.bio }}</p>
+            <div class="profile-stats">
+              <span><b>{{ user.user.post.length }}</b> Posts</span>
+              <span><b>{{followersCount}}</b><a routerLink="../../display/true/{{profileId}}">Followers</a> </span>
+              <span><a >{{followingCount}}</a> <a routerLink="../../display/false/{{profileId}}">Following</a></span>
+               
+            </div>
+            <div *ngIf="isVisible">
+              <!-- <button (click)="followUser()" [ngClass]="{ 'followed': isFollowing }" class="follow-btn">
+                {{ isFollowing ? 'Unfollow' : 'Follow' }}
+              </button> -->
+              <button *ngIf="isFollowing" (click)="unFollowUser()" class="follow-btn" [ngClass]="isFollowing">unfollow</button>
+              <button *ngIf="!isFollowing" (click)="followUser()"  class="follow-btn">follow</button>
+            </div>
+            
+            <!-- <button (click)="followUser()">follow</button> -->
+          </div>  
+        </div>
+      </div>
+  
+      <!-- Posts Grid -->
+      <div class="feed">
+        <h2>Posts</h2>
+        <div class="posts-grid">
+
+          <app-posts *ngFor="let post of posts" [post]="post" [profileUrl]="profilePic"></app-posts>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <!-- <div *ngFor="let post of user.user.post" class="post">
+    <div class="post-header">
+      <img [src]=" user.profilePic " alt="Profile Picture" class="avatar" />
+      <span>{{ user.username }}</span>
+    </div>
+    <img [src]="post.imgUrl" alt="Post Image" class="post-image" />
+    <div class="post-footer">
+      <p><b>{{ user.username }}</b> {{ post.caption }}</p>
+      <div class="post-actions">
+        <button (click)="likePost(post)" [ngClass]="{ 'liked': post.like.isLiked }" class="like-button">
+          ❤️ {{ post.like.count }}
+        </button>
+        <button class="comment-button">💬 {{ post.comments.length }}</button>
+      </div>
+    </div>
+  </div> -->

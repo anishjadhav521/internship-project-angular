@@ -1,0 +1,51 @@
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <app-menu [profileId]="profileId" (added)="added()"></app-menu>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section class="feed">
+      <h2>Hey {{userName}} !!</h2>
+
+      <app-followers-following *ngIf="profileId" [profileId]="profileId" [postLength]="postLength" ></app-followers-following>
+      
+      <!-- <app-posts *ngFor="let post of posts" [post]="post" ></app-posts> -->
+      <app-posts *ngFor="let post of posts" [post]="post"  (delete)="deleteComponent(post.PostId)" [profileUrl]="profilePicUrl" ></app-posts>
+      
+    </section>
+  </main>
+
+  <!-- Suggestions -->
+  <!-- <aside class="suggestions">
+    <h2>Suggested for you</h2>
+    <ul>
+      <li><button>Suggested User 1</button></li>
+      <li><button>Suggested User 2</button></li>
+    </ul>
+  </aside>
+</div> -->
+
+<!-- Add Post Modal -->
+<!-- <div class="modal" *ngIf="isPostFormVisible">
+  <div class="modal-content">
+    <h2>Add a New Post</h2>
+    <input type="file" (change)="onChange($event)">
+    <input type="text" [(ngModel)]="caption" placeholder="Add a caption">
+    <button (click)="addPost()">Submit</button>
+    <button class="close-btn" (click)="togglePostForm()">Cancel</button>
+  </div>
+</div> -->
+
+<!-- <p-drawer header="Notification" [(visible)]="visible2" position="right" >
+
+  <div class="card" >
+      <p-message  severity="success" *ngFor="let notificaiton of notifications">{{notificaiton.notification}}</p-message>
+  </div>
+</p-drawer> -->
+
+<!-- <ng-container #container >
+  <button (click)="closeComments()">close</button>
+</ng-container> -->
+
