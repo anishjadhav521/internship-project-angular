@@ -14,7 +14,7 @@ import { globalErrorHandler } from "./middleware/error";
 import { error, log } from "console";
 
 const app = express();
-const port = 200;
+const port = process.env.PORT;
 app.use(cookieParser())
 
 const server = createServer(app);
